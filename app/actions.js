@@ -1,16 +1,16 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+// Handle cache revalidation
+// import { revalidatePath } from 'next/cache';
 
-export async function postFormData(prevState, formData) {
+export async function postFormData(formData) {
 	try {
-		// console.log('POST/ FORM ACTION', formData);
 		const user = {
 			firstname: formData.get('firstname'),
 			lastname: formData.get('lastname'),
 		};
-		// console.log('FORM DATA', user);
-		revalidatePath('/');
+
+		// revalidatePath('/');
 		return user;
 	} catch (error) {
 		return error;
@@ -27,8 +27,7 @@ export async function preloadFormInputValues() {
 			lastname: data.last_name,
 		};
 
-		// console.log('GET/ SERVER ACTION', savedFormPreload);
-		revalidatePath('/');
+		// revalidatePath('/');
 		return preload;
 	} catch (error) {
 		return error;
